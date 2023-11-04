@@ -53,6 +53,45 @@ def calularValorZ(estring, Z):
                 Z[i] = R - L
                 R -= 1
 
+"""
+Analisis de palindromos, pseudcodigo.
+"""
+"""
+complejidad de -> O(N^2)
+ciclo (verificar caracter x caracter <-> indice k):  O(N) -> FOR(k=0, k<N,k +=1 )
+    centro = caracter en posición k
+    expansión
+
+    ciclo( h-j <- centro (k) -> h+j): O(N) -> for ( j=1, j>= 0 and j<N, j +=1)
+        if (texto[k-j] == texto[k +j ]) :
+                sigue avanzando
+            else: 
+                detener comparación
+"""
+def palindromo(s):
+    n = len(s) # O(N)
+    print(n)
+    k= 0
+    while k<n :
+        centro  =  s[k]
+        j= 1
+        while j >= 0  and j < n: 
+            if (k+j < n ):
+                if (s[k-j] == s[k+j]):
+                    print("Si es")
+                    j+=1
+                else:
+                    break
+                    print("No es palindromo")
+            else:
+                break
+                
+        k +=1
+            
+                    
+
+
+
 
 def buscar(texto, patron):
     supercadena = patron + "#" + texto
@@ -72,4 +111,5 @@ def main():
     patron = "Wally"
     buscar(texto, patron)
 
+    palindromo("baaa")
 main()
