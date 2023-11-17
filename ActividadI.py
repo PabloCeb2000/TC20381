@@ -1,48 +1,3 @@
-#+title: Actividad Integradora 1
-#+property: header-args :tangle ActividadI.py :session actividadi :results value silent
-
-* Contenidos :toc:
-- [[#parte-1][Parte 1]]
-  - [[#implementacion][Implementacion]]
-- [[#parte-2][Parte 2]]
-  - [[#pseudocodigo][Pseudocodigo]]
-  - [[#algoritmo][Algoritmo]]
-- [[#parte-3][Parte 3]]
-- [[#funcion-principal][Funcion principal]]
-
-* Parte 1
-El programa debe analizar si el contenido de los archivos mcode1.txt, mcode2.txt y mcode3.,txt están contenidos en los archivos transmission1.txt y transmission2.txt y desplegar un true o false si es que las secuencias de chars están contenidas o no. En caso de ser true, muestra true, seguido de exactamente un espacio, seguido de la posición en el archivo de transmissiónX.txt donde inicia el código de mcodeY.txt
-
-** Implementacion
-*** Funcion Z
-*Complejidad O(N+M)*
-Busqueda de patrones en un texto
-Busqueda de patrones en un texto
-- Patrón long M
-- Patrón long N
-
-Tradicional: O(NM)
-    N~M --> O(N^2)
-KMP: O(N+M) --> O(2N) =- O(N)
-
-Función Z:
-    * Guardar la longitud de la subcadena más larga comenzando en la posición i
-    * La subcadena también es un prefijo de la cadena original
-
-
-indice:  0 1 2 3 4 5 6 7 8 9 10 11
-texto:   a a b c a a b x a a a  z
-valor z: x 1 0 0 3 1 0 0 2 2 1  0
-(long de subcadena, que es un prefijo)
-
-Z[0]: * No importa
-      * cualquier subcadena comenzando en 0 es prefijo de str
-      * longitud variable: 0...N-1
-
-Z[1]: * long de subcadena más larga y prefijo de str
-
-*** Algoritmo
-#+begin_src python
 def calcularValorZ(estring, Z):
     n = len(estring)
     L, R = 0, 0
@@ -65,10 +20,7 @@ def calcularValorZ(estring, Z):
                 R += 1
             Z[i] = R - L
             R -= 1
-#+end_src
 
-*** Funcion buscar()
-#+begin_src python
 def buscar(texto, patron):
     supercadena = patron + "#" + texto
 
@@ -81,24 +33,7 @@ def buscar(texto, patron):
             return True
 
     return False
-#+end_src
 
-* Parte 2
-Suponiendo que el código malicioso tiene siempre código "espejeado" (palíndromos de chars), sería buena idea buscar este tipo de código en una transmisión. El programa después debe buscar si hay código "espejeado" dentro de los archivos de transmisión. (palíndromo a nivel chars, no meterse a nivel bits). El programa muestra en una sola linea dos enteros separados por un espacio correspondientes a la posición (iniciando en 1) en donde inicia y termina el código "espejeado" más largo (palíndromo) para cada archivo de transmisión. Puede asumirse que siempre se encontrará este tipo de código.
-
-** Pseudocodigo
-complejidad de -> O(N^2)
-ciclo (verificar caracter x caracter <-> indice k):  O(N) -> FOR(k=0, k<N,k +=1 )
-    centro = caracter en posición k
-    expansión
-
-    ciclo( h-j <- centro (k) -> h+j): O(N) -> for ( j=1, j>= 0 and j<N, j +=1)
-        if (texto[k-j] == texto[k +j ]) :
-                sigue avanzando
-            else:
-                detener comparación
-** Algoritmo
-#+begin_src python
 def palindromo(s):
     n = len(s)
     k = 0
@@ -120,12 +55,7 @@ def palindromo(s):
         k += 1
 
     return start_index, start_index + max_length - 1
-#+end_src
 
-* Parte 3
-Finalmente el programa analiza que tan similares son los archivos de transmisión, y debe mostrar la posición inicial y la posición final (iniciando en 1) del primer archivo en donde se encuentra el substring más largo común entre ambos archivos de transmisión
-
-#+begin_src python
 def substring_mas_largo(str1, str2):
     len_str1 = len(str1)
     len_str2 = len(str2)
@@ -149,10 +79,7 @@ def substring_mas_largo(str1, str2):
 
     start_index = end_index - result + 1
     return start_index + 1, end_index + 1
-#+end_src
 
-* Funcion principal
-#+begin_src python
 def main():
     archivos_transmission = ["transmission1.txt", "transmission2.txt"]
     archivos_mcode = ["mcode1.txt", "mcode2.txt", "mcode3.txt"]
@@ -189,4 +116,3 @@ def main():
 
 
 main()
-#+end_src
