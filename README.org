@@ -1,9 +1,11 @@
-# Función - Z (Z-Score) O(N+M)
+#+title: Actividad Integradora 1
 
-"""
+* Funcion Z
+*Complejidad O(N+M)*
 Busqueda de patrones en un texto
-    * Patrón long M
-    * Patrón long N
+Busqueda de patrones en un texto
+- Patrón long M
+- Patrón long N
 
 Tradicional: O(NM)
     N~M --> O(N^2)
@@ -24,11 +26,9 @@ Z[0]: * No importa
       * longitud variable: 0...N-1
 
 Z[1]: * long de subcadena más larga y prefijo de str
-"""
 
-# Algoritmo
-
-
+* Algoritmo
+#+begin_src python
 def calcularValorZ(estring, Z):
     n = len(estring)  # O(N)
     L = 0
@@ -57,12 +57,10 @@ def calcularValorZ(estring, Z):
                     R += 1
                 Z[i] = R - L
                 R -= 1
+#+end_src
 
-
-"""
-Analisis de palindromos, pseudcodigo.
-"""
-"""
+* Análisis de Palindromos
+** Pseudocodigo
 complejidad de -> O(N^2)
 ciclo (verificar caracter x caracter <-> indice k):  O(N) -> FOR(k=0, k<N,k +=1 )
     centro = caracter en posición k
@@ -73,9 +71,8 @@ ciclo (verificar caracter x caracter <-> indice k):  O(N) -> FOR(k=0, k<N,k +=1 
                 sigue avanzando
             else:
                 detener comparación
-"""
-
-
+** Algoritmo
+#+begin_src python
 def palindromo(s):
     n = len(s)
     k = 0
@@ -97,8 +94,10 @@ def palindromo(s):
         k += 1
 
     return start_index, start_index + max_length - 1
+#+end_src
 
-
+** Buscar
+#+begin_src python
 def buscar(texto, patron):
     supercadena = patron + "#" + texto
 
@@ -113,8 +112,10 @@ def buscar(texto, patron):
             positions.append(i - len(patron) - 1)
 
     return positions
+#+end_src
 
-
+** Encontrar subcadena
+#+begin_src python
 def encontrar_subcadena(texto, patron):
     m, n = len(patron), len(texto)
 
@@ -131,8 +132,9 @@ def encontrar_subcadena(texto, patron):
         return start_index, start_index + max_length - 1
     else:
         return None, None
+#+end_src
 
-
+#+begin_src python
 def analizar_contenido(transmission, mcode):
     with open(transmission, "r") as f_transmission:
         transmission_content = f_transmission.read().replace("\n", "")
@@ -148,8 +150,10 @@ def analizar_contenido(transmission, mcode):
         print(f"true {start} {end}")
     else:
         print("false")
+#+end_src
 
-
+* Leer archivos y soluciones
+#+begin_src python
 def main():
     # Parte 1
     archivos_transmission = ["transmission1.txt", "transmission2.txt"]
@@ -180,6 +184,5 @@ def main():
     else:
         print("No se encontró substring común más largo")
 
-
-if __name__ == "__main__":
-    main()
+main()
+#+end_src
