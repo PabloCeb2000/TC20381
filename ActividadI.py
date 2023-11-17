@@ -92,9 +92,9 @@ def main():
                 mcode_content = f_mcode.read().replace("\n", "")
 
             if buscar(transmission_content, mcode_content):
-                print("true")
+                print(f"true {mcode} se encuentra en {transmission}")
             else:
-                print("false")
+                print(f"false {mcode} no se encuentra en {transmission}")
 
     print("\nParte 2:")
     for transmission in archivos_transmission:
@@ -102,7 +102,7 @@ def main():
             transmission_content = f_transmission.read().replace("\n", "")
 
         start, end = palindromo(transmission_content)
-        print(f"{start} {end}")
+        print(f"El código espejeado se encuentra entre los caracteres: {start} - {end}")
 
     print("\nParte 3:")
     with open(archivos_transmission[0], "r") as f_transmission1:
@@ -112,7 +112,7 @@ def main():
         transmission2_content = f_transmission2.read().replace("\n", "")
 
     start, end = substring_mas_largo(transmission1_content, transmission2_content)
-    print(f"{start} {end}")
+    print(f"El substring más largo se puede observar entre {start} - {end} de transmission1")
 
 
 main()
